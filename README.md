@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# url_shortener_rails
+A URL Shortener app made in Rails, for learning purposes.
+>>>>>>> origin/master
