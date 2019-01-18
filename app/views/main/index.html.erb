@@ -1,9 +1,9 @@
 <h1>Type in the URL to shorten</h1>
-<%= form_with scope: :article, url: urls_path, local: true do |form| %>
+<%= form_with scope: :url, url: urls_path, local: true do |form| %>
 
   <p>
-    <%= form.label :url %><br>
-    <%= form.text_field :url %><br>
+    <%= form.label :original_url %><br>
+    <%= form.text_field :original_url %><br>
   </p>
 
 
