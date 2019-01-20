@@ -1,7 +1,7 @@
 <p>
   <!-- <img src="../../assets/images/logo-chaordic.png" alt="logo" /> -->
   <%#= image_tag("../../assets/images/logo-chaordic.png", :alt => "logo") %> 
-  <%= image_tag("/assets/images/logo-chaordic.png",  alt: "logo", class: "logo") %>
+  <%= image_tag("/app/assets/images/logo-chaordic.png",  :alt => "logo", :class => "logo") %>
 </p>
 
 <h1>Shorten Your Links</h1>
@@ -26,16 +26,20 @@
     <th>ID</th>
     <th>URL</th>
     <th>Hits</th>
-    <th>URL Hash</th>
+    <th>Hash</th>
   </tr>
- 
-  <% @urls.each do |url| %>
-    <tr>
-      <td><%= url.id %></td>
-      <td><%= url.original_url %></td>
-      <td><%= url.hits %></td>
-      <td><%= Base62.encode(url.id) %></td>
-    </tr>
+  
+  <% if @urls.blank? %>
+    <p>There are not urls in the system.</p>
+  <% else %>  
+    <% @urls.each do |url| %>
+      <tr>
+        <td><%= url.id %></td>
+        <td><%= url.original_url %></td>
+        <td><%= url.hits %></td>
+        <td><%= Base62.encode(url.id) %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 
