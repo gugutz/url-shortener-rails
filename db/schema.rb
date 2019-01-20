@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2019_01_19_012218) do
 
   create_table "urls", force: :cascade do |t|
     t.string "original_url"
-    t.string "short_url"
     t.integer "hits"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
