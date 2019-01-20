@@ -1,0 +1,43 @@
+<p>
+  <!-- <img src="../../assets/images/logo-chaordic.png" alt="logo" /> -->
+  <%#= image_tag("../../assets/images/logo-chaordic.png", :alt => "logo") %> 
+  <%= image_tag("/assets/images/logo-chaordic.png",  alt: "logo", class: "logo") %>
+</p>
+
+<h1>Shorten Your Links</h1>
+<p>Links are long. Shorten the links you want to share,<br>
+  and follow while they travel through the internet.</p>
+
+<%= form_with scope: :url, url: urls_path, local: true do |form| %>
+
+  <p>
+    <%= form.label :original_url %><br>
+    <%= form.text_field :original_url %><br>
+  </p>
+
+
+  <p>
+    <%= form.submit %><br>
+  </p>
+
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>URL</th>
+    <th>Hits</th>
+    <th>URL Hash</th>
+  </tr>
+ 
+  <% @urls.each do |url| %>
+    <tr>
+      <td><%= url.id %></td>
+      <td><%= url.original_url %></td>
+      <td><%= url.hits %></td>
+      <td><%= Base62.encode(url.id) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% end %>
+
