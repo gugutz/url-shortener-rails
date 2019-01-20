@@ -1,6 +1,8 @@
 class UrlsController < ApplicationController
+  require 'base62-rb'
 
   def index
+    @urls = Url.all
   end
   
 
@@ -19,11 +21,11 @@ class UrlsController < ApplicationController
 
   def create
     @url = Url.new(url_params)
+    @url.hits = 0
 
     @url.save
-    redirect_to @url
-
-    # render plain: params[:url].inspect
+    redirect_back(fallback_location: root_path)
+    # redirect_to @url
   end
 
   
@@ -35,7 +37,7 @@ class UrlsController < ApplicationController
 
   private
   def url_params
-    params.require(:url).permit(:id, :original_url)
+    params.require(:url).permit(:id, :original_url, :hits)
   end
   
 

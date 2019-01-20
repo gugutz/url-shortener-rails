@@ -9,10 +9,10 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "it should add urls in the db" do
-    @url = Url.new(url_params)
+    @url = Url.new({id => 100, original_url => "http://teste.com", hits => 5})
     @url.save
 
-    assert_not_empty(@url.id
+    assert_not_empty(@url.id)
 
   end
   

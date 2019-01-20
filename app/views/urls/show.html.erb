@@ -6,10 +6,28 @@
 
 <p>
   <strong>hash do url:</strong>
-  <%= @url.short_url %>
+  <%= @short_url %>
 </p>
 
 <p>
   <strong>hits deste url:</strong>
-  <%= @url.hits %>
 </p>
+<h1>Most used hashfied urls</h1>
+ 
+<table>
+  <tr>
+    <th>ID</th>
+    <th>URL</th>
+    <th>Hits</th>
+    <th>URL Hash</th>
+  </tr>
+ 
+  <% @urls.each do |url| %>
+    <tr>
+      <td><%= url.id %></td>
+      <td><%= url.original_url %></td>
+      <td><%= url.hits %></td>
+      <td><%= @short_url %></td>
+    </tr>
+  <% end %>
+</table>
