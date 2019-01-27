@@ -15,6 +15,9 @@
     <%= form.text_field :original_url %><br>
   </p>
 
+  <% if @msg.any? %>
+    <p><%= msg %></p>
+  <% end %>
 
   <p>
     <%= form.submit %><br>
