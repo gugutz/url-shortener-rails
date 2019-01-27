@@ -20,24 +20,27 @@
     <%= form.submit %><br>
   </p>
 
+  <p>
+    <%= @teste %><br>
+  </p>
 
 <table>
   <tr>
     <th>ID</th>
     <th>URL</th>
     <th>Hits</th>
-    <th>Hash</th>
+    <th>Short URL</th>
   </tr>
   
-  <% if @urls.blank? %>
-    <p>There are not urls in the system.</p>
+  <% if @urls.empty? %>
+    <p>There are no urls in the database.</p>
   <% else %>  
     <% @urls.each do |url| %>
       <tr>
         <td><%= url.id %></td>
         <td><%= url.original_url %></td>
         <td><%= url.hits %></td>
-        <td><%= Base62.encode(url.id) %></td>
+        <td><%= url.short_url %></td>
       </tr>
     <% end %>
   <% end %>
