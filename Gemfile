@@ -15,6 +15,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 # Use pg as database for Active Record
 gem 'pg', '~> 1.1.4'
 
+# rubocop
+gem 'rubocop', require: false
+
 # base62 string codec
 gem 'base62-rb'
 

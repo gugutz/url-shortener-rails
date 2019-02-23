@@ -1,7 +1,7 @@
 <p>
   <!-- <img src="../../assets/images/logo-chaordic.png" alt="logo" /> -->
   <%#= image_tag("../../assets/images/logo-chaordic.png", :alt => "logo") %> 
-  <%= image_tag("/app/assets/images/logo-chaordic.png",  :alt => "logo", :class => "logo") %>
+  <%= image_tag("logo-chaordic.png",  :alt => "logo", :class => "logo") %>
 </p>
 
 <h1>Shorten Your Links</h1>
@@ -12,11 +12,11 @@
 
   <p>
     <%= form.label :original_url %><br>
-    <%= form.text_field :original_url %><br>
+    <%= form.text_field :original_url %>
   </p>
 
-  <% if @msg.any? %>
-    <p><%= msg %></p>
+  <% unless @msg.to_s.empty? %>
+    <p><%= @msg %></p>
   <% end %>
 
   <p>
@@ -27,6 +27,10 @@
     <%= @teste %><br>
   </p>
 
+  
+  <% if @urls.empty? %>
+    <p>There are no urls in the database.</p>
+  <% else %>  
 <table>
   <tr>
     <th>ID</th>
@@ -34,10 +38,6 @@
     <th>Hits</th>
     <th>Short URL</th>
   </tr>
-  
-  <% if @urls.empty? %>
-    <p>There are no urls in the database.</p>
-  <% else %>  
     <% @urls.each do |url| %>
       <tr>
         <td><%= url.id %></td>
