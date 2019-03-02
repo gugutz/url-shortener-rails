@@ -15,6 +15,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 # Use pg as database for Active Record
 gem 'pg', '~> 1.1.4'
 
+# integrates bulma-css into the assets pipeline
+gem 'bulma-rails', '~> 0.7.4'
+
 # rubocop
 gem 'rubocop', require: false
 
