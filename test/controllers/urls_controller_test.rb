@@ -17,11 +17,11 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return a url when given a hash" do
-    
+
   end
-  
+
   test "should return a hash when given a url" do
-    
+
   end
 end
 

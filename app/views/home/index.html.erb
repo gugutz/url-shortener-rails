@@ -1,2 +1,47 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Shorten Your Links</h1>
+<p>Links are long. Shorten the links you want to share,<br>
+  and follow while they travel through the internet.</p>
+
+<%= form_with scope: :url, url: urls_path, local: true do |form| %>
+
+  <p>
+    <%= form.label :original_url %><br>
+    <%= form.text_field :original_url %>
+  </p>
+
+  <% unless @msg.to_s.empty? %>
+    <p><%= @msg %></p>
+  <% end %>
+
+  <p>
+    <%= form.submit %><br>
+  </p>
+
+  <p>
+    <%= @teste %><br>
+  </p>
+
+  
+  <% if @urls.empty? %>
+    <p>There are no urls in the database.</p>
+  <% else %>  
+<table>
+  <tr>
+    <th>ID</th>
+    <th>URL</th>
+    <th>Hits</th>
+    <th>Short URL</th>
+  </tr>
+    <% @urls.each do |url| %>
+      <tr>
+        <td><%= url.id %></td>
+        <td><%= url.original_url %></td>
+        <td><%= url.hits %></td>
+        <td><%= url.short_url %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<% end %>
+
