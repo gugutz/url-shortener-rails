@@ -1,0 +1,24 @@
+<% content_for :stylesheets do %>
+  #top_menu {display: none}
+  #right_menu {float: right; background-color: yellow; color: black}
+<% end %>
+
+<div class="header">  
+  <% render partial: "header" %>
+</div>  
+
+<div class="main">  
+  <%# render :content %>
+</div>  
+
+<div class="main">  
+  <%= yield %>  
+</div>  
+
+<!-- <div class="sidebar">   -->
+  <%#= yield :sidebar %>  
+  <%# render :sidebar %>
+<!-- </div>  
+-->
+
+<%#= render template: "layouts/application" %>

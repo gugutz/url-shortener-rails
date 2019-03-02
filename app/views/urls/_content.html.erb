@@ -1,0 +1,3 @@
+<% content_for :content do %>
+  <%= content_for?(:content) ? yield(:content) : yield %>
+<% end %>
