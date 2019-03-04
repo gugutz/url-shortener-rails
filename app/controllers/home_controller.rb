@@ -7,7 +7,8 @@ class HomeController < ApplicationController
 
     unless @urls.empty?
       @urls.each do |link|
-        link.short_url = url.encode(link.id)
+        id_hash = url.encode(link.id)
+        link.short_url = url.mount_short_url(id_hash)
       end
     end
 
@@ -15,6 +16,12 @@ class HomeController < ApplicationController
       Rails.logger.debug "URL: #{params[:original_url]}"
       UrlsController.create
     end
+  end
+
+  def signup
+  end
+
+  def login
   end
 
 end

@@ -2,10 +2,8 @@
 
 one:
   original_url: MyString
-  short_url: MyString
   hits: 1
 
 two:
   original_url: MyString
-  short_url: MyString
   hits: 1

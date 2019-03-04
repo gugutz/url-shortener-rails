@@ -12,22 +12,25 @@ class UrlsController < ApplicationController
   # end
 
   def valid_url?(url)
-    true if url =~ /\A\s*#{URI::regexp}\s*\z/
-    # if url =~ URI::DEFAULT_PARSER.regexp(:ABS_URI)
+    if url =~ /\A\s*#{URI::regexp}\s*\z/
+      true
+    else
+      false
+      # if url =~ URI::DEFAULT_PARSER.regexp(:ABS_URI)
+    end
   end
 
   def create
-    @url = Url.new(url_params)
-    if valid_url?(@url.original_url)
-      @url.hits = 0
+    @url = Url.new(original_url: url_params[:original_url])
+    # if valid_url?(@url.original_url)
+    # @url.hits = 0
 
-      @url.save
-      Rails.logger.info('saved URL in the database')
-      redirect
-    else
-      Rails.logger.info 'Input is not a valid URL'
-      redirect
-    end
+    @url.save
+    Rails.logger.info('saved URL in the database')
+    # else
+    #   Rails.logger.info 'Input is not a valid URL'
+    # end
+    redirect
   end
 
   # def update
@@ -39,8 +42,7 @@ class UrlsController < ApplicationController
   def encode(id)
     id_hash = Base62.encode(id)
     # @url.short_url = ENV['APP_DOMAIN'] + id_hash
-    short_url = 'https://hashfier.herokuapp.com/' + id_hash.to_s
-    short_url
+    id_hash
   end
 
   def decode(url_hash)
@@ -52,6 +54,11 @@ class UrlsController < ApplicationController
       Rails.logger.info "id is #{id}"
       id
     end
+  end
+
+  def mount_short_url(id_hash)
+    short_url = 'https://hashfier.herokuapp.com/' + id_hash.to_s
+    short_url
   end
 
   def redirect
