@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta charset="UTF-8">
+    <title><%= @page_title %></title>
+    <meta name="description" content="<%= @page_description %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <!--[if (lt IE 9) & (!IEMobile)]>
+    <![endif]-->
+  </head>
+  <body>
+    
+    <section class="section">
+
+        <% render partial: "home/header" %>
+
+        <% render partial: "home/navbar" %>
+
+      <div class="content">  
+        <%= yield %>  
+      </div>  
+
+    <%= render partial: "footer" %>
+
+    </section>
+
+  </body>
+</html>
+
