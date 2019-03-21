@@ -13,14 +13,17 @@ default: &default
 development:
   <<: *default
   database: hashfier_dev
-  username: taugres
+  username: postgres
+  # the following is the name of the host AS DEFINED IN DOCKER-COMPOSE SERVICES SECTION
+  host: db
+  port: 5432
   password:
 
 
 production:
   <<: *default
   database: hashfier_prod 
-  username: taugres
+  username: postgres
   password:
   
 

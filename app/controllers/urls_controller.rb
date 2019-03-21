@@ -11,25 +11,9 @@ class UrlsController < ApplicationController
   # def edit
   # end
 
-  def valid_url?(url)
-    if url =~ /\A\s*#{URI::regexp}\s*\z/
-      true
-    else
-      false
-      # if url =~ URI::DEFAULT_PARSER.regexp(:ABS_URI)
-    end
-  end
-
   def create
-    @url = Url.new(original_url: url_params[:original_url])
-    # if valid_url?(@url.original_url)
-    # @url.hits = 0
-
-    @url.save
+    @url = Url.create(original_url: url_params[:original_url])
     Rails.logger.info('saved URL in the database')
-    # else
-    #   Rails.logger.info 'Input is not a valid URL'
-    # end
     redirect
   end
 
@@ -39,37 +23,13 @@ class UrlsController < ApplicationController
   # def destroy
   # end
 
-  def encode(id)
-    id_hash = Base62.encode(id)
-    # @url.short_url = ENV['APP_DOMAIN'] + id_hash
-    id_hash
-  end
-
-  def decode(url_hash)
-    id = Base62.decode(url_hash.to_s)
-
-    if id.nil?
-      Rails.logger.info 'id is null'
-    else
-      Rails.logger.info "id is #{id}"
-      id
-    end
-  end
-
-  def mount_short_url(id_hash)
-    short_url = 'https://hashfier.herokuapp.com/' + id_hash.to_s
-    short_url
-  end
 
   def redirect
     if params[:token].present?
       url_hash = params[:token]
 
-      id = decode(url_hash)
-      @url = Url.find(id)
-      @url.hits = @url.hits + 1
-      @url.save
-      # redirect_to destination_url.original_url
+      @url = Url.find_by_hash(url_hash)
+      @url.hit
       redirect_back(fallback_location: @url.original_url)
     else
       @msg = Rails.logger.info 'the :token parameter is empty'
@@ -79,8 +39,16 @@ class UrlsController < ApplicationController
 
   private
 
+  def all_params
+    params.require(:url).permit(:id, :original_url, :hits)
+  end
+
   def url_params
-    params.require(:url).permit(:id, :original_url, :hits, :short_url)
+    params.require(:url).permit(:original_url, :hits)
+  end
+
+  def redirect_params
+    params.require(:token)
   end
 
 end

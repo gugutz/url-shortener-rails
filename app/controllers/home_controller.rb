@@ -5,12 +5,7 @@ class HomeController < ApplicationController
     @urls = Url.all
     url = UrlsController.new
 
-    unless @urls.empty?
-      @urls.each do |link|
-        id_hash = url.encode(link.id)
-        link.short_url = url.mount_short_url(id_hash)
-      end
-    end
+    @url = Url.new
 
     if params[:original_url].present?
       Rails.logger.debug "URL: #{params[:original_url]}"

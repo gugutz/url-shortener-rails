@@ -46,7 +46,7 @@
             <td><%= url.id %></td>
             <td><%= url.original_url %></td>
             <td><%= url.hits %></td>
-            <td><%= url.short_url %></td>
+            <td><%= url.generate_short_url(url.id) %></td>
           </tr>
         <% end %>
     <% end %>
